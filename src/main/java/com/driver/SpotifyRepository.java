@@ -74,8 +74,8 @@ public class SpotifyRepository {
         Song s=new Song(title,length);
         if(!songs.contains(s)) songs.add(s);
         Album a=new Album(albumName);
-        if(!albums.contains(a))  return null;
-        if(!albumSongMap.containsKey(a)) return null;
+        if(!albums.contains(a) || !albumSongMap.containsKey(a))
+       throw new Exception("Album does not exist");
         if(!albumSongMap.get(a).contains(s)) albumSongMap.get(a).add(s);
         songLikeMap.put(s,new ArrayList<>());
         return s;
