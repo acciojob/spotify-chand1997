@@ -135,7 +135,7 @@ public class SpotifyRepository {
     }
 
     public Song likeSong(String mobile, String songTitle) throws Exception {
-        if(mobile==null || songTitle==null) return null;
+        if(mobile==null || songTitle==null) throw new NullPointerException();
         Song s=null;
         for(Song ss:songs){
             if(ss.getTitle().equals(songTitle)){
