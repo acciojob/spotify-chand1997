@@ -58,26 +58,21 @@ public class SpotifyRepository {
         if(!albumSongMap.containsKey(a)) albumSongMap.put(a,new ArrayList<>());
         Artist ar=createArtist(artistName);
         if(!albums.contains(a)) albums.add(a);
-        if(!artistAlbumMap.containsKey(ar)){
-            artistAlbumMap.put(ar,new ArrayList<>());
-        }
-        if(!artistAlbumMap.get(ar).contains(a)){
-            artistAlbumMap.get(ar).add(a);
-
-            return a;
-        }
-        return null;
-
+        if(!artistAlbumMap.containsKey(ar)) artistAlbumMap.put(ar,new ArrayList<>());
+        if(!artistAlbumMap.get(ar).contains(a)) artistAlbumMap.get(ar).add(a);
+        return a;
     }
 
     public Song createSong(String title, String albumName, int length) throws Exception{
         Song s=new Song(title,length);
-        if(!songs.contains(s)) songs.add(s);
+        if(!songs.contains(s)) {
+            songs.add(s);
+            songLikeMap.put(s,new ArrayList<>());
+        }
         Album a=new Album(albumName);
         if(!albums.contains(a) || !albumSongMap.containsKey(a))
        throw new Exception("Album does not exist");
         if(!albumSongMap.get(a).contains(s)) albumSongMap.get(a).add(s);
-        songLikeMap.put(s,new ArrayList<>());
         return s;
     }
 
